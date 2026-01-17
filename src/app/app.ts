@@ -15,6 +15,10 @@ export class App {
   // intialising form
   studentForm: FormGroup;
 
+  onSubmit() {
+    console.log(this.studentForm.value);
+  }
+
   constructor(private fb: FormBuilder) {
     this.studentForm = fb.group({
       name: ['', Validators.required],
@@ -25,6 +29,4 @@ export class App {
       phone: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
     });
   }
-
-  onSubmit() {}
 }
