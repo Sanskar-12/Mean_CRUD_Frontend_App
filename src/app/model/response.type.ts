@@ -4,8 +4,8 @@ export type getAllStudentsResponse = {
   data: Student[];
 };
 
-type Student = {
-  id: string;
+export type Student = {
+  _id: string;
   name: string;
   age: number;
   email: string;

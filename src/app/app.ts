@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { RouterOutlet } from '@angular/router';
 import { Api } from './services/api';
 import { catchError } from 'rxjs';
+import { Student } from './model/response.type';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ export class App {
 
   // intialising form
   studentForm: FormGroup;
+  students: Student[] = [];
 
   // form onsubmit function
   onSubmit() {
@@ -36,7 +38,8 @@ export class App {
         }),
       )
       .subscribe((res) => {
-        console.log(res);
+        this.students = res.data;
+        console.log(this.students);
       });
   }
 
