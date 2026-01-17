@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
+import { Api } from './services/api';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -12,11 +14,30 @@ import { RouterOutlet } from '@angular/router';
 export class App {
   protected readonly title = signal('student-portal');
 
+  // injecting the service to make api calls
+  apiService = inject(Api);
+
   // intialising form
   studentForm: FormGroup;
 
+  // form onsubmit function
   onSubmit() {
     console.log(this.studentForm.value);
+  }
+
+  // this will run when the component will initialise
+  ngOnInit(): void {
+    this.apiService
+      .getStudents()
+      .pipe(
+        catchError((err) => {
+          console.log(err);
+          throw err;
+        }),
+      )
+      .subscribe((res) => {
+        console.log(res);
+      });
   }
 
   constructor(private fb: FormBuilder) {
