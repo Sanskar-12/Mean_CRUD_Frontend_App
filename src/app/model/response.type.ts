@@ -4,6 +4,14 @@ export type getAllStudentsResponse = {
   data: Student[];
 };
 
+export type createStudentResponse = {
+  success: boolean;
+  message: string;
+  data: Student;
+};
+
+export type addStudentRequest = Omit<Student, '_id'>;
+
 export type Student = {
   _id: string;
   name: string;

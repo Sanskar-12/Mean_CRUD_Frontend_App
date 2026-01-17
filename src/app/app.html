@@ -19,8 +19,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        @for (student of students; track student._id; let i = $index) {
+      @for (student of students(); track student._id ?? $index; let i = $index) {
+        <tr>
           <td>{{ i + 1 }}</td>
           <td>{{ student.name }}</td>
           <td>{{ student.age }}</td>
@@ -34,8 +34,8 @@
             </button>
             <button class="btn btn-danger ms-2">Delete</button>
           </td>
-        }
-      </tr>
+        </tr>
+      }
     </tbody>
   </table>
 </div>
@@ -45,7 +45,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Add/Edit Student</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="studentForm.reset()"
+        ></button>
       </div>
       <div class="modal-body">
         <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
@@ -144,7 +150,14 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              (click)="studentForm.reset()"
+            >
+              Close
+            </button>
             <button type="submit" class="btn btn-primary">Submit</button>
           </div>
         </form>

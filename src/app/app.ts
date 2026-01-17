@@ -20,27 +20,40 @@ export class App {
 
   // intialising form
   studentForm: FormGroup;
-  students: Student[] = [];
+  students = signal<Student[]>([]);
 
   // form onsubmit function
   onSubmit() {
     console.log(this.studentForm.value);
+    if (this.studentForm.valid) {
+      const studentData = this.studentForm.value;
+
+      this.apiService
+        .addStudent(studentData)
+        .pipe(
+          catchError((err) => {
+            console.log(err);
+            throw err;
+          }),
+        )
+        .subscribe((res) => {
+          console.log(res);
+        });
+    }
   }
 
   // this will run when the component will initialise
   ngOnInit(): void {
-    this.apiService
-      .getStudents()
-      .pipe(
-        catchError((err) => {
-          console.log(err);
-          throw err;
-        }),
-      )
-      .subscribe((res) => {
-        this.students = res.data;
-        console.log(this.students);
-      });
+    this.getAllStudents();
+  }
+
+  getAllStudents() {
+    this.apiService.getStudents().subscribe({
+      next: (res) => {
+        this.students.set(res.data);
+      },
+      error: (err) => console.error(err),
+    });
   }
 
   constructor(private fb: FormBuilder) {
