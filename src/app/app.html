@@ -1,1 +1,137 @@
-<h1 class="text-center">Student List</h1>
+<div class="container mt-5">
+  <h1 class="text-center">Student List</h1>
+  <div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal">
+      Add Student
+    </button>
+  </div>
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>Sr No.</th>
+        <th>Student's Name</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Class</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Sr No.</td>
+        <td>Student's Name</td>
+        <td>Age</td>
+        <td>Email</td>
+        <td>Class</td>
+        <td>Address</td>
+        <td>Phone</td>
+        <td class="d-flex justify-content-end">
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+            Edit
+          </button>
+          <button class="btn btn-danger ms-2">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add/Edit Student</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <!-- Left column -->
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  formControlName="name"
+                  placeholder="Enter Student's Name"
+                />
+                <div class="text-danger small">Name is required</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="age" class="form-label">Age</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="age"
+                  formControlName="age"
+                  placeholder="Enter Student's Age"
+                />
+                <div class="text-danger small">Age is required</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  formControlName="email"
+                  placeholder="Enter Student's Email"
+                />
+                <div class="text-danger small">Email is required</div>
+              </div>
+            </div>
+
+            <!-- Right column -->
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="studentClass" class="form-label">Class</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="studentClass"
+                  formControlName="studentClass"
+                  placeholder="Enter Student's Class"
+                />
+                <div class="text-danger small">Class is required</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="address"
+                  formControlName="address"
+                  placeholder="Enter Student's Address"
+                />
+                <div class="text-danger small">Address is required</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="phone" class="form-label">Phone</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="phone"
+                  formControlName="phone"
+                  placeholder="Enter Student's Phone"
+                />
+                <div class="text-danger small">Phone is required</div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
