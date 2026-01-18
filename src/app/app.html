@@ -32,7 +32,7 @@
             <button
               class="btn btn-primary"
               data-bs-toggle="modal"
-              data-bs-target="#myModal"
+              data-bs-target="#secondModal"
               (click)="getStudentDetails(student._id)"
             >
               Edit
@@ -51,7 +51,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Add/Edit Student</h4>
+        <h4 class="modal-title">Add Student</h4>
         <button
           type="button"
           class="btn-close"
@@ -62,6 +62,132 @@
       </div>
       <div class="modal-body">
         <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <!-- Left column -->
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  formControlName="name"
+                  placeholder="Enter Student's Name"
+                />
+                @if (studentForm.get('name')?.invalid && studentForm.get('name')?.touched) {
+                  <div class="text-danger small">Name is required</div>
+                }
+              </div>
+
+              <div class="mb-3">
+                <label for="age" class="form-label">Age</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="age"
+                  formControlName="age"
+                  placeholder="Enter Student's Age"
+                />
+                @if (studentForm.get('age')?.invalid && studentForm.get('age')?.touched) {
+                  <div class="text-danger small">Age is required</div>
+                }
+              </div>
+
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  formControlName="email"
+                  placeholder="Enter Student's Email"
+                />
+                @if (studentForm.get('email')?.invalid && studentForm.get('email')?.touched) {
+                  <div class="text-danger small">Email is required</div>
+                }
+              </div>
+            </div>
+
+            <!-- Right column -->
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="studentClass" class="form-label">Class</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="studentClass"
+                  formControlName="studentClass"
+                  placeholder="Enter Student's Class"
+                />
+                @if (
+                  studentForm.get('studentClass')?.invalid &&
+                  studentForm.get('studentClass')?.touched
+                ) {
+                  <div class="text-danger small">Class is required</div>
+                }
+              </div>
+
+              <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="address"
+                  formControlName="address"
+                  placeholder="Enter Student's Address"
+                />
+                @if (studentForm.get('address')?.invalid && studentForm.get('address')?.touched) {
+                  <div class="text-danger small">Address is required</div>
+                }
+              </div>
+
+              <div class="mb-3">
+                <label for="phone" class="form-label">Phone</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="phone"
+                  formControlName="phone"
+                  placeholder="Enter Student's Phone"
+                />
+                @if (studentForm.get('phone')?.invalid && studentForm.get('phone')?.touched) {
+                  <div class="text-danger small">Phone is required</div>
+                }
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              (click)="studentForm.reset()"
+            >
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="secondModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Student</h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="studentForm.reset()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="studentForm" (ngSubmit)="onUpdateHandler()">
           <div class="row">
             <!-- Left column -->
             <div class="col-md-6">

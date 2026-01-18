@@ -7,6 +7,7 @@ import {
   getAllStudentsResponse,
   getStudentDetailsResponse,
   Student,
+  updateStudentDetailsResponse,
 } from '../model/response.type';
 
 @Injectable({
@@ -39,5 +40,11 @@ export class Api {
   getStudentById(studentId: string) {
     const url = `${this.baseUrl}/get/${studentId}`;
     return this.http.get<getStudentDetailsResponse>(url);
+  }
+
+  // Update Student Details By Id
+  updateStudentById(studentId: string, student: addStudentRequest) {
+    const url = `${this.baseUrl}/update/${studentId}`;
+    return this.http.put<updateStudentDetailsResponse>(url, student);
   }
 }

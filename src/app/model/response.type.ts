@@ -16,6 +16,12 @@ export type getStudentDetailsResponse = {
   data: Student;
 };
 
+export type updateStudentDetailsResponse = {
+  success: boolean;
+  message: string;
+  data: Student;
+};
+
 export type deleteStudentResponse = {
   success: boolean;
   message: string;

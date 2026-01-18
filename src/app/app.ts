@@ -21,6 +21,7 @@ export class App {
   // intialising form
   studentForm: FormGroup;
   students = signal<Student[]>([]);
+  selectedStudentId = signal<string>('');
 
   // form onsubmit function
   onSubmit() {
@@ -45,6 +46,7 @@ export class App {
   }
 
   getStudentDetails(studentId: string) {
+    this.selectedStudentId.set(studentId);
     this.apiService
       .getStudentById(studentId)
       .pipe(
@@ -64,6 +66,22 @@ export class App {
           address: res.data.address,
           phone: res.data.phone,
         });
+      });
+  }
+
+  onUpdateHandler() {
+    const studentData = this.studentForm.value;
+    this.apiService
+      .updateStudentById(this.selectedStudentId(), studentData)
+      .pipe(
+        catchError((err) => {
+          console.log(err);
+          throw err;
+        }),
+      )
+      .subscribe((res) => {
+        console.log(res);
+        this.getAllStudents();
       });
   }
 
