@@ -29,7 +29,12 @@
           <td>{{ student.address }}</td>
           <td>{{ student.phone }}</td>
           <td class="d-flex justify-content-end">
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+            <button
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#myModal"
+              (click)="getStudentDetails(student._id)"
+            >
               Edit
             </button>
             <button class="btn btn-danger ms-2" (click)="deleteStudentHandler(student._id)">

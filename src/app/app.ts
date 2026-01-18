@@ -44,6 +44,29 @@ export class App {
     }
   }
 
+  getStudentDetails(studentId: string) {
+    this.apiService
+      .getStudentById(studentId)
+      .pipe(
+        catchError((err) => {
+          console.log(err);
+          throw err;
+        }),
+      )
+      .subscribe((res) => {
+        console.log(res);
+        // patchValue is used to fill the data into the form
+        this.studentForm.patchValue({
+          name: res.data.name,
+          age: res.data.age,
+          email: res.data.email,
+          studentClass: res.data.studentClass,
+          address: res.data.address,
+          phone: res.data.phone,
+        });
+      });
+  }
+
   deleteStudentHandler(studentId: string) {
     this.apiService
       .deleteStudent(studentId)

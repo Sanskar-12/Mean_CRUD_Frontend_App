@@ -10,6 +10,12 @@ export type createStudentResponse = {
   data: Student;
 };
 
+export type getStudentDetailsResponse = {
+  success: boolean;
+  message: string;
+  data: Student;
+};
+
 export type deleteStudentResponse = {
   success: boolean;
   message: string;

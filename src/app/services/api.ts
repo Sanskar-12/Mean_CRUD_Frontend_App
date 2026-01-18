@@ -5,6 +5,7 @@ import {
   createStudentResponse,
   deleteStudentResponse,
   getAllStudentsResponse,
+  getStudentDetailsResponse,
   Student,
 } from '../model/response.type';
 
@@ -32,5 +33,11 @@ export class Api {
   deleteStudent(studentId: string) {
     const url = `${this.baseUrl}/delete/${studentId}`;
     return this.http.delete<deleteStudentResponse>(url);
+  }
+
+  // Get Student By Id api call
+  getStudentById(studentId: string) {
+    const url = `${this.baseUrl}/get/${studentId}`;
+    return this.http.get<getStudentDetailsResponse>(url);
   }
 }
