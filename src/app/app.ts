@@ -25,7 +25,6 @@ export class App {
 
   // form onsubmit function
   onSubmit() {
-    console.log(this.studentForm.value);
     if (this.studentForm.valid) {
       const studentData = this.studentForm.value;
 
@@ -38,7 +37,6 @@ export class App {
           }),
         )
         .subscribe((res) => {
-          console.log(res);
           this.getAllStudents();
           this.studentForm.reset();
         });
@@ -56,7 +54,6 @@ export class App {
         }),
       )
       .subscribe((res) => {
-        console.log(res);
         // patchValue is used to fill the data into the form
         this.studentForm.patchValue({
           name: res.data.name,
@@ -80,7 +77,6 @@ export class App {
         }),
       )
       .subscribe((res) => {
-        console.log(res);
         this.getAllStudents();
       });
   }
@@ -95,7 +91,6 @@ export class App {
         }),
       )
       .subscribe((res) => {
-        console.log(res);
         this.getAllStudents();
       });
   }
