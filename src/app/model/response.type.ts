@@ -10,6 +10,12 @@ export type createStudentResponse = {
   data: Student;
 };
 
+export type deleteStudentResponse = {
+  success: boolean;
+  message: string;
+  data: null;
+};
+
 export type addStudentRequest = Omit<Student, '_id'>;
 
 export type Student = {

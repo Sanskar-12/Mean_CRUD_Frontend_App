@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import {
   addStudentRequest,
   createStudentResponse,
+  deleteStudentResponse,
   getAllStudentsResponse,
   Student,
 } from '../model/response.type';
@@ -25,5 +26,11 @@ export class Api {
   addStudent(student: addStudentRequest) {
     const url = `${this.baseUrl}/create`;
     return this.http.post<createStudentResponse>(url, student);
+  }
+
+  // Delete Student api call
+  deleteStudent(studentId: string) {
+    const url = `${this.baseUrl}/delete/${studentId}`;
+    return this.http.delete<deleteStudentResponse>(url);
   }
 }

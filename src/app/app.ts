@@ -38,8 +38,25 @@ export class App {
         )
         .subscribe((res) => {
           console.log(res);
+          this.getAllStudents();
+          this.studentForm.reset();
         });
     }
+  }
+
+  deleteStudentHandler(studentId: string) {
+    this.apiService
+      .deleteStudent(studentId)
+      .pipe(
+        catchError((err) => {
+          console.log(err);
+          throw err;
+        }),
+      )
+      .subscribe((res) => {
+        console.log(res);
+        this.getAllStudents();
+      });
   }
 
   // this will run when the component will initialise
